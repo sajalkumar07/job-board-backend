@@ -5,6 +5,7 @@ const userRoutes = require("./routes/userRoutes");
 const mailRoutes = require("./routes/mailRoutes");
 const smsRoutes = require("./routes/smsRoutes");
 const jobRoutes = require("./routes/jobRoutes");
+
 const cors = require("cors");
 
 dotenv.config();
@@ -14,7 +15,10 @@ app.use(express.json());
 
 app.use(
   cors({
-    origin: "http://localhost:3000", // Your frontend URL
+    origin: [
+      "http://localhost:3000", // Allow localhost during development
+      "https://job-board-frontend-3zcxq4qpf-sajalkumar07s-projects.vercel.app", // Allow your deployed frontend
+    ], // Your frontend URL
     methods: ["GET", "POST", "PUT", "DELETE"],
     allowedHeaders: ["Content-Type", "Authorization"],
   })
